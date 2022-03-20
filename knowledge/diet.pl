@@ -7,6 +7,24 @@ dishProducts([], []):-!.
 dishProducts([[HeadR|_]|Tail], [HeadR|TailR]):-
     dishProducts(Tail, TailR).
 
+pfc([],0,0,0,0).
+pfc([[ProductName | _]|Other],Cal,P,F,C):-
+    pfc(Other,Cal1,P1,F1,C1),
+    product(ProductName,TempCal,TempP,TempF,TempC),
+    Cal is TempCal + Cal1,
+    P is TempP + P1,
+    F is TempF + F1,
+    C is TempC + C1.
+
+
+fac(0,1).
+fac(A,B) :-
+      A > 0,
+      Ax is A - 1,
+      fac(Ax,Bx),
+      B is A * Bx.
+
+
 symptoms(кандида, антикандида).
 symptoms("плохое усвоение углеводов", "low fodmap").
 symptoms("пищевая зависимость", lchf).
@@ -42,9 +60,6 @@ product(судак, 84, 19.2, 0.7, 0).
 product("лимонный сок", 16, 0.9, 0.1, 3.0).
 product("оливковое масло", 898, 0, 100, 0).
 product(шпинат, 23, 3, 0.4, 4).
-
-% это правило что бы давать 0 продуктам неизвестным системе
-product(_,0,0,0,0).
 
 %  правила для калорийности
 b(X, 'very low', R):- X<10, X1 is ((X-90)/20), pow(X1, 2, X2), R is 2*X2.
