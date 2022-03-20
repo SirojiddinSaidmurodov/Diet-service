@@ -16,15 +16,6 @@ pfc([[ProductName | _]|Other],Cal,P,F,C):-
     F is TempF + F1,
     C is TempC + C1.
 
-
-fac(0,1).
-fac(A,B) :-
-      A > 0,
-      Ax is A - 1,
-      fac(Ax,Bx),
-      B is A * Bx.
-
-
 symptoms(кандида, антикандида).
 symptoms("плохое усвоение углеводов", "low fodmap").
 symptoms("пищевая зависимость", lchf).
