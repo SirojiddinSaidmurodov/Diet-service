@@ -54,7 +54,7 @@ product(шпинат, 23, 3, 0.4, 4).
 
 %  правила для калорийности
 b(X, 'very low', R):- X<10, X1 is ((X-90)/20), pow(X1, 2, X2), R is 2*X2.
-b(X, 'low', R):- X>=100, X<110, X1 is ((110-X)/20), pow(X1, 3, X2), R is 1-2*X2.
-b(X, 'average', R):- X>=100, X<110, X1 is ((110-X)/20), pow(X1, 4, X2), R is 1-2*X2.
-b(X, 'hight', R):- X>=100, X<110, X1 is ((110-X)/20), pow(X1, 5, X2), R is 1-2*X2.
-b(X, 'very hight', R):- X>=100, X<110, X1 is ((110-X)/20), pow(X1, 6, X2), R is 1-2*X2.
+b(X, 'low', R):- X>=30, X<70, X1 is ((110-X)/20), pow(X1, 3, X2), R is 1-2*X2.
+b(X, 'average', R):- X>=80, X<200, X1 is ((110-X)/20), pow(X1, 4, X2), R is 1-2*X2.
+b(X, 'hight', R):- X>=200, X<400, X1 is ((110-X)/20), pow(X1, 5, X2), R is 1-2*X2.
+b(X, 'very hight', R):- X>500,X1 is ((110-X)/20), pow(X1, 6, X2), R is 1-2*X2.
