@@ -129,3 +129,6 @@ dmypy.json
 
 .idea
 /knowledge/caloriesModel.nn
+/knowledge/fuzzy-logic.py
+#styles source
+/materialize
