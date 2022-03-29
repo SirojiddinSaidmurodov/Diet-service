@@ -16,6 +16,15 @@ def encode(result: dict):
     for key in result.keys():
         if type(result.get(key)) == bytes:
             result[key] = result.get(key).decode('utf-8')
+        if type(result.get(key)) == list:
+            temp = result.get(key)
+            r = []
+            for t in temp:
+                if type(t) == bytes:
+                    r.append(t.decode('utf-8'))
+                else:
+                    r.append(t)
+            result[key] = r
 
 
 def get_dishes(symptom):
@@ -28,7 +37,6 @@ def get_dishes(symptom):
         encode(solution)
         s = {
             "X": str(solution["X"]),
-            "Y": str(solution["Y"]),
             "P": str(solution["P"]),
             "Diet": str(solution["Diet"]),
             "Allowed": str(solution["Allowed"]),
