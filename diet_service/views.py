@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.http import JsonResponse
 
-# Create your views here.
+from knowledge.diet_knowledgebase import get_dishes
+
+
+def diet(request, query):
+    results = get_dishes(query)
+    return JsonResponse(results)
