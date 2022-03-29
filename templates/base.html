@@ -6,15 +6,57 @@
     {# Import Google Icon Font #}
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     {# Import materialize.css #}
-    <link type="text/css" rel="stylesheet" href="
-
-
-    matermaterializecss/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href=matermaterialize/css/materialize.min.css"  media="screen,projection"/>
+    {#    Vue.js    #}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  ``
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="diesease" type="text">
+          <label for="diesease">Болезнь</label>
+        </div>
+      </div>
+        <div id="searchApp">
+            <div class="">
+            <div v-for="dish in result">
+                [[dish]]
+            </div>
+            </div>
+        </div>
+    </form>
+  </div>
 </body>
 {# JavaScript #}
 <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+const apiUrl = 'api/get-diet'
+let searchApp = new Vue({
+    delimiters: ["[[", "]]"],
+    el: '#searchApp',
+    data: {
+        query: '',
+        result: [],
+        loading: false
+    },
+    methods: {
+        async get_result() {
+            if (this.query !== '') {
+                this.loading = true;
+                this.result = [];
+                axios.get(apiUrl + this.query).then(response => {
+                        this.result = response.data;
+                    })
+            }
+        }
+    }
+});
+</script>
 </html>
