@@ -6,7 +6,7 @@ from knowledge.diet_knowledgebase import process
 
 def diet(request, query):
     results = process(query)
-    return JsonResponse(results)
+    return JsonResponse(results, safe=False)
 
 
 def index(request):

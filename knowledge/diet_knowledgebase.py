@@ -9,7 +9,7 @@ def initialise():
     global prolog
     from pyswip import Prolog
     prolog = Prolog()
-    prolog.consult("diet.pl", catcherrors=True)
+    prolog.consult('/Users/saidmurodov/Projects/Diet-service/knowledge/diet.pl', catcherrors=True)
 
 
 def encode(result: dict):
@@ -26,12 +26,24 @@ def get_dishes(symptom):
             "dish(X,Y),dishProducts(Y,P), symptoms({}, Diet), diet(Diet,_,Allowed), common_elements(Allowed,P), pfc(Y,Calories,Proteins,Fats,Carbohydrates), b(Calories, Level, _).".format(
                 symptom)):
         encode(solution)
-        result.append(solution)
+        s = {
+            "X": str(solution["X"]),
+            "Y": str(solution["Y"]),
+            "P": str(solution["P"]),
+            "Diet": str(solution["Diet"]),
+            "Allowed": str(solution["Allowed"]),
+            "Calories": str(solution["Calories"]),
+            "Proteins": str(solution["Proteins"]),
+            "Fats": str(solution["Fats"]),
+            "Carbohydrates": str(solution["Carbohydrates"]),
+            "Level": str(solution["Level"])
+        }
+        result.append(s)
 
     return result
 
 
-pool = Pool(None, initialise)
+pool = Pool(1, initialise)
 
 if __name__ == '__main__':
 
