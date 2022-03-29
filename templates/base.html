@@ -17,15 +17,18 @@
     <form class="col s12">
       <div class="row">
         <div class="input-field col s12">
-          <input id="diesease" type="text">
+          <div id="searchApp">
+          <input id="diesease" type="text" v-on:input="get_result" v-model="query">
           <label for="diesease">Болезнь</label>
+              <output>
+          <div v-for="dish in result">
+                [[dish]]
+            </div></output>
         </div>
       </div>
-        <div id="searchApp">
+
             <div class="">
-            <div v-for="dish in result">
-                [[dish]]
-            </div>
+
             </div>
         </div>
     </form>
@@ -37,7 +40,7 @@
 <script>
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-const apiUrl = 'api/get-diet'
+const apiUrl = 'api/get-diet/'
 let searchApp = new Vue({
     delimiters: ["[[", "]]"],
     el: '#searchApp',

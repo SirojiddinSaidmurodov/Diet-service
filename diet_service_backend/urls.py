@@ -21,5 +21,6 @@ from diet_service_backend import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/get-diet/', views.diet),
+    path('api/get-diet/<str:query>', views.diet),
+    path('', views.index),
 ]

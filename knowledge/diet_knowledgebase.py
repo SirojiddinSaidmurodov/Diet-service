@@ -1,7 +1,6 @@
 from pyswip import Prolog
 
-prolog = Prolog()
-prolog.consult("diet.pl", catcherrors=True)
+
 
 
 def encode(result: dict):
@@ -11,6 +10,8 @@ def encode(result: dict):
 
 
 def get_dishes(symptom):
+    prolog = Prolog()
+    prolog.consult("diet.pl", catcherrors=True)
     result = []
     for solution in prolog.query(
             "dish(X,Y),dishProducts(Y,P), symptoms({}, Diet), diet(Diet,_,Allowed), common_elements(Allowed,P), pfc(Y,Calories,Proteins,Fats,Carbohydrates), b(Calories, Level, _).".format(
