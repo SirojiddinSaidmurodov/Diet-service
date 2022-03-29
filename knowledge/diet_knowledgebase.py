@@ -1,6 +1,15 @@
-from pyswip import Prolog
+from multiprocessing import Pool
 
 
+def process(data):
+    return pool.apply(get_dishes, (data,))
+
+
+def initialise():
+    global prolog
+    from pyswip import Prolog
+    prolog = Prolog()
+    prolog.consult("diet.pl", catcherrors=True)
 
 
 def encode(result: dict):
@@ -10,8 +19,8 @@ def encode(result: dict):
 
 
 def get_dishes(symptom):
-    prolog = Prolog()
-    prolog.consult("diet.pl", catcherrors=True)
+    global prolog
+
     result = []
     for solution in prolog.query(
             "dish(X,Y),dishProducts(Y,P), symptoms({}, Diet), diet(Diet,_,Allowed), common_elements(Allowed,P), pfc(Y,Calories,Proteins,Fats,Carbohydrates), b(Calories, Level, _).".format(
@@ -21,6 +30,8 @@ def get_dishes(symptom):
 
     return result
 
+
+pool = Pool(None, initialise)
 
 if __name__ == '__main__':
 
