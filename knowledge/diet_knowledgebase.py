@@ -13,7 +13,7 @@ def encode(result: dict):
 def get_dishes(symptom):
     result = []
     for solution in prolog.query(
-            "dish(X,Y),dishProducts(Y,P), symptoms({}, Diet), diet(Diet,_,Allowed), common_elements(Allowed,P), pfc(Y,Calories,Proteins,Fats,Carbohydrates).".format(
+            "dish(X,Y),dishProducts(Y,P), symptoms({}, Diet), diet(Diet,_,Allowed), common_elements(Allowed,P), pfc(Y,Calories,Proteins,Fats,Carbohydrates), b(Calories, Level, _).".format(
                 symptom)):
         encode(solution)
         result.append(solution)
