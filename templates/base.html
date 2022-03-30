@@ -22,7 +22,7 @@
                     <label for="diesease">Болезнь</label>
                     <output>
                         <div v-for="dish in result" class="card-group">
-                            <div class="card">
+                            <div class="card text-dark bg-light mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title">[[dish.X]]</h5>
                                     <div class="card-text">
@@ -34,6 +34,7 @@
                                         <div>Углеводы: [[dish.Carbohydrates]]</div>
                                         <div>Уровень калорийности: [[dish.Level]]</div>
                                     </div>
+                                    <div class="card-footer">[[dish.Diet]]</div>
                                 </div>
                             </div>
                         </div>
