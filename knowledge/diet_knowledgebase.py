@@ -9,7 +9,7 @@ def initialise():
     global prolog
     from pyswip import Prolog
     prolog = Prolog()
-    prolog.consult('/Users/saidmurodov/Projects/Diet-service/knowledge/diet.pl', catcherrors=True)
+    prolog.consult('/knowledge/diet.pl', catcherrors=True)
 
 
 def encode(result: dict):
